@@ -6,7 +6,7 @@ spec found.
 
 """
 import os
-import cStringIO as StringIO
+from io import BytesIO
 
 from django.core.files.base import ContentFile
 
@@ -62,7 +62,7 @@ class Accessor(object):
             except IOError:
                 return
             fp.seek(0)
-            fp = StringIO.StringIO(fp.read())
+            fp = BytesIO(fp.read())
             self._img, self._fmt = self.spec.process(Image.open(fp), self._obj)
             # save the new image to the cache
             content = ContentFile(self._get_imgfile().read())

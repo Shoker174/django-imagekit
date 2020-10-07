@@ -21,6 +21,7 @@ class Options(object):
     #storage = defaults to image_field.storage
 
     def __init__(self, opts):
-        for key, value in opts.__dict__.iteritems():
-            setattr(self, key, value)
+        for key, value in opts.__dict__.items():
+            if not key.startswith('__'):
+                setattr(self, key, value)
         self.specs = list(self.specs or [])

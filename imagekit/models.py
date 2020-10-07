@@ -57,7 +57,7 @@ class ImageModelBase(ModelBase):
         setattr(cls, '_ik', opts)
 
 
-class ImageModel(models.Model):
+class ImageModel(models.Model, metaclass = ImageModelBase):
     """ Abstract base class implementing all core ImageKit functionality
 
     Subclasses of ImageModel are augmented with accessors for each defined
@@ -65,7 +65,6 @@ class ImageModel(models.Model):
     storage locations and other options.
 
     """
-    __metaclass__ = ImageModelBase
 
     class Meta:
         abstract = True
